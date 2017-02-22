@@ -1,9 +1,10 @@
-export const RECEIVE_FORECAST = 'RECEIVE_FORECAST';
+import { Link, browserHistory } from 'react-router';
 
-export const receiveForecast = (forecastData) => ({
-  // action object
-});
-
-export const fetchForecast = options => dispatch => {
-  // return fetch API call
-};
+export const signIn = (email,password, user) => {
+  return {
+    type: 'SIGN_IN',
+    email,
+    password,
+    user,
+  }
+}
