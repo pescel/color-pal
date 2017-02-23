@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone';
+const ColorPalette = require('../helpers/ColorPalette')
 
 export default class Photo extends Component {
   constructor() {
@@ -12,6 +13,15 @@ export default class Photo extends Component {
 
   onDrop(files) {
     console.log('Received files: ', files[0]);
+    console.log(ColorPalette);
+    let cp = new ColorPalette()
+    var img = document.createElement("img");
+    img.src = window.URL.createObjectURL(files[0]);
+    img.height = 60;
+    img.onload = function() {
+      window.URL.revokeObjectURL(this.src);
+      console.log(cp.getPalette(this, 5));
+    }
     this.setState({ file: files[0].preview });
   }
 
