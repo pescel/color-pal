@@ -15,3 +15,12 @@ export const storePhoto = (photo) => {
     photo
   }
 }
+
+export const deletePalette = (photo) => {
+  return {
+    type: 'DELETE_PALETTE',
+    photo
+  }
+}
+
+// export const storePalette = ()

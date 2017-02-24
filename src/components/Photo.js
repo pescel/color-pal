@@ -4,16 +4,14 @@ import Dropzone from 'react-dropzone';
 const ColorPalette = require('../helpers/ColorPalette')
 
 export default class Photo extends Component {
-  constructor() {
-    super()
-    this.state = {
-      palette: ''
-    }
-  }
-
+  // constructor() {
+  //   super()
+  //   this.state = {
+  //     palette: ''
+  //   }
+  // }
 
   onDrop(files) {
-
     let cp = new ColorPalette()
     let img = document.createElement("img");
     img.src = window.URL.createObjectURL(files[0]);
@@ -23,14 +21,17 @@ export default class Photo extends Component {
       console.log(cp.getPalette(this, 5));
     }
     this.props.storePhoto(files[0].preview)
-    // this.setState({ palette: cp.getPalette(this, 5) })
+  }
+
+  removePhoto() {
+    this.props.deletePalette(this.props.photo)
   }
 
   loadPhotos() {
     if(this.props.photo) {
       return(
         <div>
-          <button className='delete-photo-btn'>✖️</button>
+          <button className='delete-photo-btn' onClick={this.removePhoto.bind(this)} >✖️</button>
           <button className='fav-photo-btn'>✩</button>
         </div>
       )

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { storePhoto } from '../actions/index';
+import { storePhoto, deletePalette } from '../actions/index';
 import Photo from '../components/Photo';
 
  const mapStateToProps = (state) => {
@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch) => {
   return{
     storePhoto: (photo) => {
       dispatch(storePhoto(photo))
+    },
+    deletePalette: (photo) => {
+      dispatch(deletePalette(photo))
     }
   }
 }
