@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Photo from './Photo';
+import PhotoContainer from '../containers/PhotoContainer';
 
 export default class App extends Component{
   render() {
@@ -9,7 +9,7 @@ export default class App extends Component{
       <div className='header-container'>
         <h1 className='header'>ColorPal</h1>
       </div>
-        <Photo></Photo>
+        <PhotoContainer />
     </div>
     )
   }

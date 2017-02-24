@@ -8,3 +8,10 @@
 //     user,
 //   }
 // }
+
+export const storePhoto = (photo) => {
+  return {
+    type: 'LOAD_PHOTO',
+    photo
+  }
+}
