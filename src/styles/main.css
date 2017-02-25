@@ -25,9 +25,8 @@ html {
   margin: 90px auto;
 }
 
-.color1, .color2 {
+.color1, .color2, .color3, .color4, .color5 {
   height: 250px;
-  width: 200px;
-  /*padding: 20px;*/
-  /*margin: 20px;*/
+  width: 120px;
+  display: inline-block;
 }
