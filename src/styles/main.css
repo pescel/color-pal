@@ -1,0 +1,33 @@
+
+
+html {
+  background-color: #e1e1e6;
+
+}
+
+.header-container {
+  background-color: #c4c6d4;
+  height: 150px;
+}
+
+.header {
+  font-family: 'Londrina Sketch', sans-serif;
+  margin: 0 25px;
+  font-size: 87px;
+  padding-top: 23px;
+  color: #76788b;
+}
+
+.drop-zone {
+  border: 2px dotted black;
+  height: 80vh;
+  width: 50%;
+  margin: 90px auto;
+}
+
+.color1, .color2 {
+  height: 250px;
+  width: 200px;
+  /*padding: 20px;*/
+  /*margin: 20px;*/
+}

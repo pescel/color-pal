@@ -7,41 +7,78 @@ export default class Photo extends Component {
   constructor() {
     super()
     this.state = {
-      file: ''
+      palette: [],
+      load: false
     }
+    this.colorBam = this.colorBam.bind(this)
+  }
+
+  colorBam(aPalette) {
+    this.setState({ palette: aPalette, load: true  });
   }
 
   onDrop(files) {
-    console.log('Received files: ', files[0]);
-    console.log(ColorPalette);
+    let paleto;
     let cp = new ColorPalette()
-    var img = document.createElement("img");
+    let img = document.createElement("img");
     img.src = window.URL.createObjectURL(files[0]);
     img.height = 60;
+    let self = this;
     img.onload = function() {
+      console.log(this)
       window.URL.revokeObjectURL(this.src);
-      console.log(cp.getPalette(this, 5));
+      paleto = cp.getPalette(this, 5)
+      console.log(paleto);
+      self.colorBam(paleto);
+      console.log(paleto);
     }
-    this.setState({ file: files[0].preview });
+    this.props.storePhoto(files[0].preview)
   }
 
+  removePhoto() {
+    this.props.deletePalette(this.props.photo)
+  }
+
+
   loadPhotos() {
-    if(this.state.file) {
+    if(this.props.photo) {
       return(
-        <button className='delete-photo-btn'>✖️</button>
+        <div>
+          <button className='delete-photo-btn' onClick={this.removePhoto.bind(this)} >✖️</button>
+          <button className='fav-photo-btn'>✩</button>
+        </div>
       )
     }
   }
 
 
+
   render() {
-    console.log('render', this.state.file);
+    let divStyle = {}
+    if (this.state.load) {
+      console.log(this.state.palette[0][0])
+        // background: "black",
+         divStyle = {
+        background: `rgb(${this.state.palette[0][0]},${this.state.palette[0][1]},${this.state.palette[0][2]})`,
+        height: "250px",
+        width: "250px",
+        padding: "20px",
+        margin: "20px"
+        }
+      };
+  
+
     return (
       <div className='photo-container'>
-        <Dropzone onDrop={this.onDrop.bind(this)}>
+        <Dropzone className='drop-zone' onDrop={this.onDrop.bind(this)}>
           <div>Try dropping some files here, or click to select files to upload.</div>
         </Dropzone>
-        <img src={this.state.file} />
+        <img src={this.props.photo} />
+        <div>
+          <div className='color1' style={divStyle}></div>
+        </div>
+
+
         {this.loadPhotos()}
         <button className='get-palette-btn'>Get Palette!</button>
       </div>
