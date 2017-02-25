@@ -3,8 +3,10 @@ import { storePhoto, deletePalette } from '../actions/index';
 import Photo from '../components/Photo';
 
  const mapStateToProps = (state) => {
+   console.log('state', state)
    return {
      photo: state.storePalette
+
    }
  }
 

@@ -4,6 +4,8 @@ export const storePalette = (state = '', action) => {
       return action.photo
     case 'DELETE_PALETTE':
       return ""
+    case 'LOAD_PALETTE':
+    console.log('palpalpal!')
     default:
       return state;
   }

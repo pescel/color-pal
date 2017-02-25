@@ -23,4 +23,9 @@ export const deletePalette = (photo) => {
   }
 }
 
-// export const storePalette = ()
+export const loadPalette = (palette) => {
+  return {
+    type: 'LOAD_PALETTE',
+    palette
+  }
+}

@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router';
 import Routes from './routes';
 import { rootReducer } from './reducers/index.js';
+import './styles/main.css';
 
 // import Photo from './components/Photo';
 
