@@ -8,13 +8,12 @@ export default class Photo extends Component {
     super()
     this.state = {
       palette: [],
-      load: false
     }
     this.getColors = this.getColors.bind(this)
   }
 
   getColors(aPalette) {
-    this.setState({ palette: aPalette, load: true  });
+    this.setState({ palette: aPalette });
   }
 
   onDrop(files) {
@@ -31,11 +30,13 @@ export default class Photo extends Component {
       self.getColors(paletteColors);
     }
     this.props.storePhoto(files[0].preview)
+    this.scrollPage()
   }
 
   removePhoto(paletteColors) {
     this.props.deletePalette(this.props.photo)
-  
+    this.setState({ palette: []})
+
   }
 
 
@@ -43,15 +44,17 @@ export default class Photo extends Component {
     if(this.props.photo) {
       return(
         <div>
-          <button className='delete-photo-btn' onClick={this.removePhoto.bind(this)} >✖️</button>
-          <button className='fav-photo-btn'>✩</button>
+          <button className='delete-btn' onClick={this.removePhoto.bind(this)} >x</button>
+          <button className='fave-btn'>✩</button>
         </div>
       )
     }
   }
 
-
-
+  scrollPage() {
+    var img = document.getElementByClassName('photo');
+    img.scrollIntoView()
+  }
   render() {
     let divStyle1 = {}
     let divStyle2 = {}
@@ -59,7 +62,7 @@ export default class Photo extends Component {
     let divStyle4 = {}
     let divStyle5 = {}
 
-    if (this.state.load) {
+    if (this.state.palette.length) {
          divStyle1 = {
            background: `rgb(${this.state.palette[0][0]},${this.state.palette[0][1]},${this.state.palette[0][2]})`
         }
@@ -79,22 +82,21 @@ export default class Photo extends Component {
 
 
     return (
-      <div className='photo-container'>
+      <div className='photo-palette-container'>
+      <p>Try dropping some files here, or click to select files to upload.</p>
         <Dropzone className='drop-zone' onDrop={this.onDrop.bind(this)}>
-          <div>Try dropping some files here, or click to select files to upload.</div>
         </Dropzone>
-        <img src={this.props.photo} />
-        <div>
+        <div className='img-container'>
+          <img className='photo' src={this.props.photo} />
+        </div>
+        <div className='palette-container'>
           <div className='color1' style={divStyle1}></div>
           <div className='color2' style={divStyle2}></div>
           <div className='color3' style={divStyle3}></div>
           <div className='color4' style={divStyle4}></div>
           <div className='color5' style={divStyle5}></div>
         </div>
-
-
         {this.loadPhotos()}
-        <button className='get-palette-btn'>Get Palette!</button>
       </div>
     )
   }

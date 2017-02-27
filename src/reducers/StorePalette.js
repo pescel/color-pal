@@ -5,6 +5,7 @@ export const storePalette = (state = '', action) => {
     case 'DELETE_PALETTE':
       return ""
     case 'LOAD_PALETTE':
+      return action.palette
     console.log('palpalpal!')
     default:
       return state;
