@@ -13,7 +13,7 @@ import './styles/main.css';
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 const store = createStore(rootReducer, devTools)
-console.log('hey', rootReducer)
+
 
  // state :
  //user: ''

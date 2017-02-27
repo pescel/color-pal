@@ -1,12 +1,12 @@
-
-
 html {
-  background-color: #e1e1e6;
+  background-color: #e1e6e2;
+  /*#e1e1e6; */
 
 }
 
 .header-container {
-  background-color: #c4c6d4;
+  background-color: #bec9ca;
+  /*#c4c6d4;*/
   height: 150px;
 }
 
@@ -15,19 +15,60 @@ html {
   margin: 0 25px;
   font-size: 87px;
   padding-top: 23px;
-  color: #76788b;
+  color: #475559;
+  /*#76788b;*/
 }
 
 .drop-zone {
   border: 2px dotted black;
-  height: 80vh;
-  width: 50%;
+  height: 65vh;
+  width: 90%;
   margin: 90px auto;
+  margin-top: 0;
 }
 
-.color1, .color2 {
+.color1, .color2, .color3, .color4, .color5 {
   height: 250px;
-  width: 200px;
+  width: 158px;
+  display: inline-block;
   /*padding: 20px;*/
   /*margin: 20px;*/
+}
+
+.photo-palette-container {
+  width: 50%;
+  margin: auto;
+}
+
+img {
+  width: 100%;
+}
+
+.delete-btn {
+  border: none;
+  background-color: #e1e6e2;
+  font-family: 'Londrina Sketch', sans-serif;
+  font-size: 45px;
+  font-weight: bold;
+  color: #475559;
+}
+
+.fave-btn {
+  border: none;
+  background-color: #e1e6e2;
+  font-size: 40px;
+  color: #475559;
+}
+
+.delete-btn:hover, .fave-btn:hover {
+  color: black;
+}
+
+p {
+  font-family: 'Hind Madurai', sans-serif;
+  font-size: 20px;
+  color: #4b4957;
+  text-align: center;
+  margin-top: 85px;
+
 }

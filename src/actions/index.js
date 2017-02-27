@@ -29,3 +29,11 @@ export const loadPalette = (palette) => {
     palette
   }
 }
+
+export const addFavorites = (photo, palette) => {
+  return {
+    type: 'ADD_FAVORITE',
+    photo,
+    palette
+  }
+}
