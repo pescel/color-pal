@@ -3,8 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
-    "color-thief": "^2.2.2",
-    "create-react-app-sass": "^1.1.0",
     "firebase": "^3.6.10",
     "react-scripts": "^0.6.0"
   },
@@ -19,8 +17,8 @@
     "sass-loader": "^6.0.2"
   },
   "scripts": {
-    "start": "react-scripts-with-sass start",
-    "build": "react-scripts-with-sass build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

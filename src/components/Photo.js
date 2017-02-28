@@ -24,26 +24,24 @@ export default class Photo extends Component {
     img.height = 60;
     let self = this;
     img.onload = function() {
-      console.log(this)
       window.URL.revokeObjectURL(this.src);
-      paletteColors = cp.getPalette(this, 5)
+      paletteColors = cp.getPalette(this, 6)
       self.getColors(paletteColors);
+      self.scrollToPalette()
     }
     this.props.storePhoto(files[0].preview)
-    this.scrollPage()
   }
 
   removePhoto(paletteColors) {
     this.props.deletePalette(this.props.photo)
     this.setState({ palette: []})
-
+    this.scrollToTop()
   }
-
 
   loadPhotos() {
     if(this.props.photo) {
       return(
-        <div>
+        <div className='photo-options'>
           <button className='delete-btn' onClick={this.removePhoto.bind(this)} >x</button>
           <button className='fave-btn'>✩</button>
         </div>
@@ -51,11 +49,29 @@ export default class Photo extends Component {
     }
   }
 
-  scrollPage() {
-    var img = document.getElementByClassName('photo');
-    img.scrollIntoView()
+  paletteToRGB(position) {
+    return `rgb(${this.state.palette[position][0]},${this.state.palette[position][1]},${this.state.palette[position][2]})`
   }
+
+  scrollToTop() {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }
+
+  scrollToPalette() {
+    var pal = document.getElementById('palette');
+    pal.scrollIntoView({block: 'end', behavior: 'smooth'});
+  }
+
+  setBackground() {
+    if(this.state.palette.length){
+      document.body.style.background = this.paletteToRGB(5);
+    } else {
+      document.body.style.background = '#e1e6e2';
+    }
+  }
+
   render() {
+    this.setBackground()
     let divStyle1 = {}
     let divStyle2 = {}
     let divStyle3 = {}
@@ -63,33 +79,32 @@ export default class Photo extends Component {
     let divStyle5 = {}
 
     if (this.state.palette.length) {
-         divStyle1 = {
-           background: `rgb(${this.state.palette[0][0]},${this.state.palette[0][1]},${this.state.palette[0][2]})`
-        }
-        divStyle2 = {
-          background: `rgb(${this.state.palette[1][0]},${this.state.palette[1][1]},${this.state.palette[1][2]})`
+      divStyle1 = {
+        background: this.paletteToRGB(0)
       }
-        divStyle3 = {
-          background: `rgb(${this.state.palette[2][0]},${this.state.palette[2][1]},${this.state.palette[2][2]})`
-        }
-        divStyle4 = {
-          background: `rgb(${this.state.palette[3][0]},${this.state.palette[3][1]},${this.state.palette[3][2]})`
-        }
-        divStyle5 = {
-          background: `rgb(${this.state.palette[4][0]},${this.state.palette[4][1]},${this.state.palette[4][2]})`
-        }
+      divStyle2 = {
+        background: this.paletteToRGB(1)
+      }
+      divStyle3 = {
+        background: this.paletteToRGB(2)
+      }
+      divStyle4 = {
+        background: this.paletteToRGB(3)
+      }
+      divStyle5 = {
+        background: this.paletteToRGB(4)
+      }
     };
-
 
     return (
       <div className='photo-palette-container'>
-      <p>Try dropping some files here, or click to select files to upload.</p>
+      <p>Try dropping an image here, or click to select an image from your computer.</p>
         <Dropzone className='drop-zone' onDrop={this.onDrop.bind(this)}>
         </Dropzone>
         <div className='img-container'>
-          <img className='photo' src={this.props.photo} />
+          <img src={this.props.photo} />
         </div>
-        <div className='palette-container'>
+        <div id='palette' className='palette-container'>
           <div className='color1' style={divStyle1}></div>
           <div className='color2' style={divStyle2}></div>
           <div className='color3' style={divStyle3}></div>
