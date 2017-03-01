@@ -9,7 +9,7 @@ export default class App extends Component{
   return (
     <div>
       <div className='header-container'>
-        <h1 className='header'>ColorPal</h1>
+        <h1 className='header' id='color'>ColorPal</h1>
       </div>
         <PhotoContainer />
     </div>

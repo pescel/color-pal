@@ -25,7 +25,7 @@ export default class Photo extends Component {
     let self = this;
     img.onload = function() {
       window.URL.revokeObjectURL(this.src);
-      paletteColors = cp.getPalette(this, 6)
+      paletteColors = cp.getPalette(this, 7)
       self.getColors(paletteColors);
       self.scrollToPalette()
     }
@@ -42,8 +42,8 @@ export default class Photo extends Component {
     if(this.props.photo) {
       return(
         <div className='photo-options'>
-          <button className='delete-btn' onClick={this.removePhoto.bind(this)} >x</button>
-          <button className='fave-btn'>✩</button>
+          <button id='color' className='delete-btn' onClick={this.removePhoto.bind(this)} >x</button>
+          <button id='color' className='fave-btn'>✩</button>
         </div>
       )
     }
@@ -63,15 +63,25 @@ export default class Photo extends Component {
   }
 
   setBackground() {
-    if(this.state.palette.length){
+    if(this.state.palette.length) {
       document.body.style.background = this.paletteToRGB(5);
     } else {
       document.body.style.background = '#e1e6e2';
     }
   }
 
+  // setTextColor() {
+  //   if(this.state.palette.length) {
+  //     document.getElementById('color').style.color = this.paletteToRGB(6);
+  //   } else {
+  //     document.getElementById('color').style.color='#475559';
+  //   }
+  // }
+//document.getElementById("button").style.background='#000000';
+
   render() {
     this.setBackground()
+    // this.setTextColor()
     let divStyle1 = {}
     let divStyle2 = {}
     let divStyle3 = {}
@@ -98,7 +108,7 @@ export default class Photo extends Component {
 
     return (
       <div className='photo-palette-container'>
-      <p>Try dropping an image here, or click to select an image from your computer.</p>
+      <p id='color'>Try dropping an image here, or click to select an image from your computer.</p>
         <Dropzone className='drop-zone' onDrop={this.onDrop.bind(this)}>
         </Dropzone>
         <div className='img-container'>
