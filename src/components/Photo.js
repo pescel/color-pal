@@ -10,10 +10,16 @@ export default class Photo extends Component {
       palette: [],
     }
     this.getColors = this.getColors.bind(this)
+    this.handleFavorite = this.handleFavorite.bind(this)
+
+  }
+
+  handleFavorite() {
+    this.props.addFavorite(this.props.photo, this.props.palette)
   }
 
   getColors(aPalette) {
-    this.setState({ palette: aPalette });
+    this.props.storePalette(aPalette);
   }
 
   onDrop(files) {
@@ -34,7 +40,6 @@ export default class Photo extends Component {
 
   removePhoto(paletteColors) {
     this.props.deletePalette(this.props.photo)
-    this.setState({ palette: []})
     this.scrollToTop()
   }
 
@@ -43,14 +48,15 @@ export default class Photo extends Component {
       return(
         <div className='photo-options'>
           <button id='color' className='delete-btn' onClick={this.removePhoto.bind(this)} >x</button>
-          <button id='color' className='fave-btn'>✩</button>
+          <button id='color' onClick={() => this.handleFavorite()}className='fave-btn'>✩</button>
         </div>
       )
     }
   }
 
   paletteToRGB(position) {
-    return `rgb(${this.state.palette[position][0]},${this.state.palette[position][1]},${this.state.palette[position][2]})`
+
+    return `rgb(${this.props.palette[position][0]},${this.props.palette[position][1]},${this.props.palette[position][2]})`
   }
 
   scrollToTop() {
@@ -63,7 +69,7 @@ export default class Photo extends Component {
   }
 
   setBackground() {
-    if(this.state.palette.length) {
+    if(this.props.palette.length) {
       document.body.style.background = this.paletteToRGB(5);
     } else {
       document.body.style.background = '#e1e6e2';
@@ -71,7 +77,7 @@ export default class Photo extends Component {
   }
 
   // setTextColor() {
-  //   if(this.state.palette.length) {
+  //   if(this.props.palette.length) {
   //     document.getElementById('color').style.color = this.paletteToRGB(6);
   //   } else {
   //     document.getElementById('color').style.color='#475559';
@@ -88,7 +94,7 @@ export default class Photo extends Component {
     let divStyle4 = {}
     let divStyle5 = {}
 
-    if (this.state.palette.length) {
+    if (this.props.palette.length) {
       divStyle1 = {
         background: this.paletteToRGB(0)
       }

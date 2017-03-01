@@ -16,6 +16,13 @@ export const storePhoto = (photo) => {
   }
 }
 
+export const storePalette = (palette) => {
+  return {
+    type: 'STORE_PALETTE',
+    palette
+  }
+}
+
 export const deletePalette = (photo) => {
   return {
     type: 'DELETE_PALETTE',
@@ -30,7 +37,7 @@ export const loadPalette = (palette) => {
   }
 }
 
-export const addFavorites = (photo, palette) => {
+export const addFavorite = (photo, palette) => {
   return {
     type: 'ADD_FAVORITE',
     photo,

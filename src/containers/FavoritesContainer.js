@@ -4,7 +4,7 @@ import Favorites from '../components/Favorites';
 
 const mapStateToProps = (state) => {
   return {
-    photo: state.storePalette
+    photo: state.photo
   }
 }
 
