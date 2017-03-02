@@ -48,6 +48,7 @@ img {
   font-size: 45px;
   font-weight: bold;
   color: #475559;
+  outline: 0;
 }
 
 .photo-options {
@@ -59,11 +60,12 @@ img {
   background-color: transparent;
   font-size: 40px;
   color: #475559;
+  outline: 0;
 }
 
 .delete-btn:hover, .fave-btn:hover {
   cursor: pointer;
-  color: black;
+  transform: scale(1.3);
 }
 
 p {
@@ -76,4 +78,19 @@ p {
 
 .fave-img {
   width: 50%;
+}
+
+.fave-page-btn {
+  border: none;
+  height: 40px;
+  width: 17%;
+  font-family: 'Hind Madurai', sans-serif;
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.22);
+  color: black;
+  border-radius: 5px;
+}
+
+.fave-page-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }

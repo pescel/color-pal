@@ -5,8 +5,6 @@ export default class Favorites extends Component {
     super()
   }
 
-
-
   paletteToRGB(palette, position) {
     return {
       background: `rgb(${palette[position][0]},${palette[position][1]},${palette[position][2]})`

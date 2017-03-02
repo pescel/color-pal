@@ -12,7 +12,7 @@ export default class App extends Component{
       <div className='header-container'>
         <h1 className='header color'>ColorPal</h1>
 
-      <Link to="/favorites"><button className='fave-page-btn'>Favorites</button></Link>
+      <Link to="/favorites"><button className='fave-page-btn color'>Favorites</button></Link>
       </div>
         <PhotoContainer />
     </div>
