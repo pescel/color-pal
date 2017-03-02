@@ -6,12 +6,9 @@ const ColorPalette = require('../helpers/ColorPalette')
 export default class Photo extends Component {
   constructor() {
     super()
-    this.state = {
-      palette: [],
-    }
+
     this.getColors = this.getColors.bind(this)
     this.handleFavorite = this.handleFavorite.bind(this)
-
   }
 
   handleFavorite() {
@@ -39,7 +36,8 @@ export default class Photo extends Component {
   }
 
   removePhoto(paletteColors) {
-    this.props.deletePalette(this.props.photo)
+    this.props.deletePalette(this.props.palette)
+    this.props.deletePhoto(this.props.photo)
     this.scrollToTop()
   }
 
@@ -47,15 +45,14 @@ export default class Photo extends Component {
     if(this.props.photo) {
       return(
         <div className='photo-options'>
-          <button id='color' className='delete-btn' onClick={this.removePhoto.bind(this)} >x</button>
-          <button id='color' onClick={() => this.handleFavorite()}className='fave-btn'>✩</button>
+          <button className='delete-btn color' onClick={this.removePhoto.bind(this)} >x</button>
+          <button className='fave-btn color' onClick={() => this.handleFavorite()}>✩</button>
         </div>
       )
     }
   }
 
   paletteToRGB(position) {
-
     return `rgb(${this.props.palette[position][0]},${this.props.palette[position][1]},${this.props.palette[position][2]})`
   }
 
@@ -76,18 +73,19 @@ export default class Photo extends Component {
     }
   }
 
-  // setTextColor() {
-  //   if(this.props.palette.length) {
-  //     document.getElementById('color').style.color = this.paletteToRGB(6);
-  //   } else {
-  //     document.getElementById('color').style.color='#475559';
-  //   }
-  // }
-//document.getElementById("button").style.background='#000000';
+  setTextColor() {
+    let color = '#475559'
+    if(this.props.palette.length) { color = this.paletteToRGB(0) }
+    let elements = document.getElementsByClassName('color');
+    for(let i = 0; i < elements.length; i++) {
+      elements[i].style.color = color;
+    }
+  }
+
 
   render() {
     this.setBackground()
-    // this.setTextColor()
+    this.setTextColor()
     let divStyle1 = {}
     let divStyle2 = {}
     let divStyle3 = {}
@@ -114,7 +112,7 @@ export default class Photo extends Component {
 
     return (
       <div className='photo-palette-container'>
-      <p id='color'>Try dropping an image here, or click to select an image from your computer.</p>
+      <p className='color'>Try dropping an image here, or click to select an image from your computer.</p>
         <Dropzone className='drop-zone' onDrop={this.onDrop.bind(this)}>
         </Dropzone>
         <div className='img-container'>
