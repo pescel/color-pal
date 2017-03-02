@@ -10,7 +10,7 @@ body {
   font-family: 'Londrina Sketch', sans-serif;
   margin: 0 25px;
   font-size: 96px;
-  padding-top: 23px;
+  padding: 23px;
   color: #475559;
 }
 
@@ -61,6 +61,11 @@ img {
   font-size: 40px;
   color: #475559;
   outline: 0;
+}
+
+.fave-btn:target {
+  background-color: magenta;
+  border-radius: 100%;
 }
 
 .delete-btn:hover, .fave-btn:hover {
