@@ -1,22 +1,17 @@
-html {
+body {
   background-color: #e1e6e2;
-  /*#e1e1e6; */
-
 }
 
 .header-container {
-  background-color: #bec9ca;
-  /*#c4c6d4;*/
-  height: 150px;
+  text-align: center;
 }
 
 .header {
   font-family: 'Londrina Sketch', sans-serif;
   margin: 0 25px;
-  font-size: 87px;
+  font-size: 96px;
   padding-top: 23px;
   color: #475559;
-  /*#76788b;*/
 }
 
 .drop-zone {
@@ -31,13 +26,15 @@ html {
   height: 250px;
   width: 158px;
   display: inline-block;
-  /*padding: 20px;*/
-  /*margin: 20px;*/
 }
 
 .photo-palette-container {
   width: 50%;
   margin: auto;
+}
+
+.palette-container {
+  display: flex;
 }
 
 img {
@@ -46,22 +43,29 @@ img {
 
 .delete-btn {
   border: none;
-  background-color: #e1e6e2;
+  background-color: transparent;
   font-family: 'Londrina Sketch', sans-serif;
   font-size: 45px;
   font-weight: bold;
   color: #475559;
+  outline: 0;
+}
+
+.photo-options {
+  text-align: right;
 }
 
 .fave-btn {
   border: none;
-  background-color: #e1e6e2;
+  background-color: transparent;
   font-size: 40px;
   color: #475559;
+  outline: 0;
 }
 
 .delete-btn:hover, .fave-btn:hover {
-  color: black;
+  cursor: pointer;
+  transform: scale(1.3);
 }
 
 p {
@@ -69,6 +73,24 @@ p {
   font-size: 20px;
   color: #4b4957;
   text-align: center;
-  margin-top: 85px;
+  margin-top: 25px;
+}
 
+.fave-img {
+  width: 50%;
+}
+
+.fave-page-btn {
+  border: none;
+  height: 40px;
+  width: 17%;
+  font-family: 'Hind Madurai', sans-serif;
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.22);
+  color: black;
+  border-radius: 5px;
+}
+
+.fave-page-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }

@@ -2,10 +2,11 @@ import React from 'react';
 import { render } from 'react-dom';
 import { createStore, compose} from 'redux';
 import { Provider } from 'react-redux';
-import { browserHistory } from 'react-router';
-import Routes from './routes';
+import { browserHistory, Route, Router } from 'react-router';
 import { rootReducer } from './reducers/index.js';
 import './styles/main.css';
+import App from './components/App.js'
+import FavoritesContainer from './containers/FavoritesContainer.js'
 
 // import Photo from './components/Photo';
 
@@ -15,14 +16,12 @@ const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_
 const store = createStore(rootReducer, devTools)
 
 
- // state :
- //user: ''
- //favorites: []
- //photos: []
-
 render(
   <Provider store={store}>
-    <Routes history={browserHistory} />
+    <Router history={browserHistory}>
+      <Route path='/' component={App} />
+      <Route path='/favorites' component={FavoritesContainer} />
+    </Router>
   </Provider>,
   document.getElementById('root')
 )

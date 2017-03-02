@@ -6,14 +6,17 @@ const ColorPalette = require('../helpers/ColorPalette')
 export default class Photo extends Component {
   constructor() {
     super()
-    this.state = {
-      palette: [],
-    }
+
     this.getColors = this.getColors.bind(this)
+    this.handleFavorite = this.handleFavorite.bind(this)
+  }
+
+  handleFavorite() {
+    this.props.addFavorite(this.props.photo, this.props.palette)
   }
 
   getColors(aPalette) {
-    this.setState({ palette: aPalette });
+    this.props.storePalette(aPalette);
   }
 
   onDrop(files) {
@@ -24,72 +27,98 @@ export default class Photo extends Component {
     img.height = 60;
     let self = this;
     img.onload = function() {
-      console.log(this)
       window.URL.revokeObjectURL(this.src);
-      paletteColors = cp.getPalette(this, 5)
+      paletteColors = cp.getPalette(this, 7)
       self.getColors(paletteColors);
+      self.scrollToPalette()
     }
     this.props.storePhoto(files[0].preview)
-    this.scrollPage()
   }
 
   removePhoto(paletteColors) {
-    this.props.deletePalette(this.props.photo)
-    this.setState({ palette: []})
-
+    this.props.deletePalette(this.props.palette)
+    this.props.deletePhoto(this.props.photo)
+    this.scrollToTop()
   }
-
 
   loadPhotos() {
     if(this.props.photo) {
       return(
-        <div>
-          <button className='delete-btn' onClick={this.removePhoto.bind(this)} >x</button>
-          <button className='fave-btn'>✩</button>
+        <div className='photo-options'>
+          <button className='delete-btn color' onClick={this.removePhoto.bind(this)} >x</button>
+          <button className='fave-btn color' onClick={() => this.handleFavorite()}>✩</button>
         </div>
       )
     }
   }
 
-  scrollPage() {
-    var img = document.getElementByClassName('photo');
-    img.scrollIntoView()
+  paletteToRGB(position) {
+    return `rgb(${this.props.palette[position][0]},${this.props.palette[position][1]},${this.props.palette[position][2]})`
   }
+
+  scrollToTop() {
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  }
+
+  scrollToPalette() {
+    var pal = document.getElementById('palette');
+    pal.scrollIntoView({block: 'end', behavior: 'smooth'});
+  }
+
+  setBackground() {
+    if(this.props.palette.length) {
+      document.body.style.background = this.paletteToRGB(5);
+    } else {
+      document.body.style.background = '#e1e6e2';
+    }
+  }
+
+  setTextColor() {
+    let color = '#475559'
+    if(this.props.palette.length) { color = this.paletteToRGB(0) }
+    let elements = document.getElementsByClassName('color');
+    for(let i = 0; i < elements.length; i++) {
+      elements[i].style.color = color;
+    }
+  }
+
+
   render() {
+    this.setBackground()
+    this.setTextColor()
     let divStyle1 = {}
     let divStyle2 = {}
     let divStyle3 = {}
     let divStyle4 = {}
     let divStyle5 = {}
 
-    if (this.state.palette.length) {
-         divStyle1 = {
-           background: `rgb(${this.state.palette[0][0]},${this.state.palette[0][1]},${this.state.palette[0][2]})`
-        }
-        divStyle2 = {
-          background: `rgb(${this.state.palette[1][0]},${this.state.palette[1][1]},${this.state.palette[1][2]})`
+    if (this.props.palette.length) {
+      divStyle1 = {
+        background: this.paletteToRGB(0)
       }
-        divStyle3 = {
-          background: `rgb(${this.state.palette[2][0]},${this.state.palette[2][1]},${this.state.palette[2][2]})`
-        }
-        divStyle4 = {
-          background: `rgb(${this.state.palette[3][0]},${this.state.palette[3][1]},${this.state.palette[3][2]})`
-        }
-        divStyle5 = {
-          background: `rgb(${this.state.palette[4][0]},${this.state.palette[4][1]},${this.state.palette[4][2]})`
-        }
+      divStyle2 = {
+        background: this.paletteToRGB(1)
+      }
+      divStyle3 = {
+        background: this.paletteToRGB(2)
+      }
+      divStyle4 = {
+        background: this.paletteToRGB(3)
+      }
+      divStyle5 = {
+        background: this.paletteToRGB(4)
+      }
     };
-
 
     return (
       <div className='photo-palette-container'>
-      <p>Try dropping some files here, or click to select files to upload.</p>
+      <p className='color'>Try dropping an image here, or click to select an image from your computer.</p>
         <Dropzone className='drop-zone' onDrop={this.onDrop.bind(this)}>
         </Dropzone>
         <div className='img-container'>
-          <img className='photo' src={this.props.photo} />
+          <img src={this.props.photo} />
         </div>
-        <div className='palette-container'>
+        <div id='palette' className='palette-container'>
           <div className='color1' style={divStyle1}></div>
           <div className='color2' style={divStyle2}></div>
           <div className='color3' style={divStyle3}></div>
