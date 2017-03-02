@@ -6,7 +6,7 @@ body {
   text-align: center;
 }
 
-.header {
+.header, .fave-header {
   font-family: 'Londrina Sketch', sans-serif;
   margin: 0 25px;
   font-size: 96px;
@@ -82,10 +82,10 @@ p {
 }
 
 .fave-img {
-  width: 50%;
+  width: 52%;
 }
 
-.fave-page-btn {
+.fave-page-btn, .home-btn {
   border: none;
   height: 40px;
   width: 17%;
@@ -98,4 +98,16 @@ p {
 
 .fave-page-btn:hover {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.home-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.favorite-container {
+  margin: 35px;
+}
+
+.home-btn {
+  margin-left: 85px;
 }
