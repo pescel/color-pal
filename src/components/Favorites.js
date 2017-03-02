@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 export default class Favorites extends Component {
   constructor() {
@@ -14,7 +15,13 @@ export default class Favorites extends Component {
   loadFavorites(favorites) {
     return this.props.favorites.map((favorite) => {
       return(
+
         <div>
+          <h1 className='fave-header'>Favorites</h1>
+          <Link to="/">
+           <button className='home-btn'>Home</button>
+          </Link>
+        <div className='favorite-container'>
           <div className='img-container'>
             <img className='fave-img' src={favorite.photo} />
           </div>
@@ -23,6 +30,7 @@ export default class Favorites extends Component {
             <div className='color3' style={this.paletteToRGB(favorite.palette, 2)}></div>
             <div className='color4' style={this.paletteToRGB(favorite.palette, 3)}></div>
             <div className='color5' style={this.paletteToRGB(favorite.palette, 4)}></div>
+        </div>
         </div>
       )
     })
