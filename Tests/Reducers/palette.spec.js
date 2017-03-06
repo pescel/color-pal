@@ -1,10 +1,10 @@
 import { expect, assert } from 'chai';
 import palette from '../../src/reducers/palette';
 
+const state = '';
 describe('palette', () => {
-
   it('should return the initial state', () => {
-    expect(palette( undefined, '')).to.deep.equal('')
+    expect(palette( state, '')).to.deep.equal(state)
   });
 
   it('DELETE_PALETTE should delete the palette', () => {
