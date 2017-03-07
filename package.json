@@ -28,5 +28,6 @@
   },
   "eslintConfig": {
     "extends": "./node_modules/react-scripts/config/eslint.js"
-  }
+  },
+  "homepage": "https://pescel.github.io/color-pal/"
 }
