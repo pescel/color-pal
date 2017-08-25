@@ -46,7 +46,7 @@ export default class Photo extends Component {
       return(
         <div className='photo-options'>
           <button className='delete-btn color' onClick={this.removePhoto.bind(this)} >x</button>
-          <button className='fave-btn color' onClick={() => this.handleFavorite()}>✩</button>
+          <button className='fave-btn color' onClick={() => this.handleFavorite()}>☆</button>
         </div>
       )
     }

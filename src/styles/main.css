@@ -1,17 +1,24 @@
+@font-face {
+  font-family: Coolvetica;
+  src: url('./coolvetica.ttf');
+}
+
 body {
   background-color: #e1e6e2;
 }
 
 .header-container {
   text-align: center;
+  margin-top: 10px;
 }
 
 .header, .fave-header {
-  font-family: 'Londrina Sketch', sans-serif;
+  font-family: Coolvetica, sans-serif;
   margin: 0 25px;
-  font-size: 96px;
+  font-size: 150px;
   padding: 23px;
   color: #475559;
+  letter-spacing: 5px;
 }
 
 .drop-zone {
@@ -44,28 +51,22 @@ img {
 .delete-btn {
   border: none;
   background-color: transparent;
-  font-family: 'Londrina Sketch', sans-serif;
+  font-family: Coolvetica, sans-serif;
   font-size: 45px;
   font-weight: bold;
   color: #475559;
   outline: 0;
-}
-
-.photo-options {
-  text-align: right;
+  transition: all 0.5s ease-in;
 }
 
 .fave-btn {
   border: none;
   background-color: transparent;
-  font-size: 40px;
+  font-size: 32px;
+  font-family: Coolvetica, sans-serif;
   color: #475559;
   outline: 0;
-}
-
-.fave-btn:target {
-  background-color: magenta;
-  border-radius: 100%;
+  transition: all 0.5s ease-in;
 }
 
 .delete-btn:hover, .fave-btn:hover {
@@ -73,32 +74,59 @@ img {
   transform: scale(1.3);
 }
 
+.fave-btn:active {
+  background-image: url('filled-star.svg');
+}
+
+.photo-options {
+  text-align: right;
+}
+
+
+.fave-btn:target {
+  background-color: magenta;
+  border-radius: 100%;
+}
+
+
 p {
-  font-family: 'Hind Madurai', sans-serif;
+  font-family: 'Pragati Narrow', sans-serif;
   font-size: 20px;
   color: #4b4957;
   text-align: center;
-  margin-top: 25px;
+  margin-top: 75px;
 }
 
 .fave-img {
   width: 52%;
 }
 
-.fave-page-btn, .home-btn {
-  border: none;
-  height: 40px;
-  width: 17%;
+.fave-page-btn, .home-btn, .home-page-btn, .login-page-btn {
+  border: 2px solid #4b4957;
   font-family: 'Hind Madurai', sans-serif;
-  font-size: 16px;
-  background-color: rgba(0, 0, 0, 0.22);
-  color: black;
-  border-radius: 5px;
+  font-size: 20px;
+  color: #4b4957;
+  background: transparent;
+  margin-left: 30px;
+  padding: 10px;
+  transition: all 0.5s ease;
 }
 
-.fave-page-btn:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+.fave-page-btn:hover, .home-btn:hover, .home-page-btn:hover, .login-page-btn:hover  {
+  font-size: 25px;
+  border: 3px solid #4b4957;
 }
+
+.btn-container {
+  margin: 0 auto;
+}
+
+/*.fave-page-btn {
+  position: absolute;
+  top: 30px;
+  left: 200px;
+}*/
+
 
 .home-btn:hover {
   background-color: rgba(0, 0, 0, 0.1);
