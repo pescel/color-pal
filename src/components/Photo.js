@@ -115,15 +115,15 @@ export default class Photo extends Component {
       <p className='color'>Try dropping an image here, or click to select an image from your computer.</p>
         <Dropzone className='drop-zone' onDrop={this.onDrop.bind(this)}>
         </Dropzone>
-        <div className='img-container'>
+        <div className='img-palette-container'>
           <img src={this.props.photo} />
-        </div>
-        <div id='palette' className='palette-container'>
-          <div className='color1' style={divStyle1}></div>
-          <div className='color2' style={divStyle2}></div>
-          <div className='color3' style={divStyle3}></div>
-          <div className='color4' style={divStyle4}></div>
-          <div className='color5' style={divStyle5}></div>
+          <div id='palette' className='palette-container'>
+            <div className='color1' style={divStyle1}></div>
+            <div className='color2' style={divStyle2}></div>
+            <div className='color3' style={divStyle3}></div>
+            <div className='color4' style={divStyle4}></div>
+            <div className='color5' style={divStyle5}></div>
+          </div>
         </div>
         {this.loadPhotos()}
       </div>
